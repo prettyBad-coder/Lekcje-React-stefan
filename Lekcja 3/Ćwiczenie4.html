@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Lekcja 3 </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		body {
+			background: #303030;
+			overflow: hidden;
+			color: white;
+			font-weight: bolder;
+		}
+
+		* {
+			margin-top: 10px;
+		}
+
+		.box {
+			width: 200px;
+			height: auto;
+			padding: 5px;
+			border: 5px solid green;
+			padding: 10px;
+			padding-top: 0;
+			box-sizing: border-box;
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			align-content: center;
+		}
+
+		.formBox {
+			padding: 25px;
+			padding-top: 10px;
+			border: 5px solid orange;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 90vw;
+			margin: 0 auto;
+		}
+
+		.text {
+			color: blue;
+			font-size: 1.1rem;
+			font-weight: bolder;
+			width: 100%;
+			text-align: center;
+		}
+
+		.red {
+			font-weight: bolder;
+			color: red;
+		}
+
+		.green {
+			font-weight: bolder;
+			color: green;
+		}
+
+		.green-bg {
+			background: rgb(21, 206, 21);
+		}
+
+		.naura {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+		
+		class MyRadio extends React.Component {
+			constructor (props) {
+				super(props);
+
+				this.state = {
+					chosenNumber: 0
+				}
+			}
+
+			myRadio = (event) => {
+				this.setState({chosenNumber: event.target.value})
+			}
+
+			deleteBox = () => {
+				this.props.deleteFun(this.props.index);
+			}
+
+			
+			render () {
+				return (
+					<div className="box">
+						<div className="text">
+							{ this.props.name }
+						</div>
+						<div className="text">
+							id: { this.props.index }
+						</div>
+						<div className="text">
+							Wybrano: { this.state.chosenNumber }
+						</div>
+						<form>
+							<input onChange={this.myRadio} type="radio" name="number" value="1" />1
+							<input onChange={this.myRadio} type="radio" name="number" value="2" />2
+							<input onChange={this.myRadio} type="radio" name="number" value="3" />3
+							<input onChange={this.myRadio} type="radio" name="number" value="4" />4
+							<input onChange={this.myRadio} type="radio" name="number" value="5" />5	
+						</form>
+						<button onClick={ this.deleteBox }>
+							Delete
+						</button>
+					</div>
+				)
+			}
+		}
+
+		class MyForm extends React.Component {
+			constructor (props) {
+				super(props);
+
+				this.state = {
+					radiosArray: [<MyRadio name={ 'BBB' } key={ 0 } index={ 0 } deleteFun={ this.deleteBox } />, <MyRadio name={ 'AAA' } index={ 1 } key={ 1 } deleteFun={ this.deleteBox } />],
+					selectedOption: 'AAA',
+					help: true,
+					id: 2,
+				}
+			}
+
+			onOptionChange = (event) => {
+				let id = this.state.id;
+				this.state.selectedOption = this.state.help ? 'BBB' : 'AAA';
+				this.state.radiosArray.push(<MyRadio name={ this.state.selectedOption } index={ id } key={ id } deleteFun={ this.deleteBox } />)
+				console.log(this.state.radiosArray)
+				id++;
+				this.setState({ 
+					help: !this.state.help,
+					id: id
+				});
+			}
+
+			//napraw to essa
+			deleteBox = (index) => {
+				let filteredArray = this.state.radiosArray.filter((element, i) => {
+					console.log(`index: ${index}`);
+					console.log(`i: ${i}`);
+					return i != index
+				});
+				console.log(filteredArray);
+				this.setState({
+					radiosArray: filteredArray,
+				});
+			}
+			
+
+			render () {
+				return (
+					<div className="formBox">
+						<div>
+							<input type="radio" value="AAA" checked={ this.state.selectedOption == 'AAA' } onChange={ this.onOptionChange } />
+							AAA BBB<input type="radio" value="B" checked={ this.state.selectedOption == 'BBB' } onChange={ this.onOptionChange } />
+						</div>
+						<div className="naura">
+							{ this.state.radiosArray }
+						</div>
+					</div>
+				)
+			}
+		}
+
+
+		ReactDOM.render(
+			<MyForm />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

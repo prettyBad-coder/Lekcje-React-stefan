@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #303030;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 95vh;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 5px solid orange;
+  border-radius: 30px;
+  margin: 2.5vh auto;
+  padding: 30px;
+}
+
+.boards {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid blue;
+  border-radius: 25px;
+  padding: 30px;
+}
+
+.boards > * {
+	margin: 10px;
+}
+
+.board {
+  margin: 10px 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.board > * {
+  margin: 5px;
+}
+
+.boards-wrapper {
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+button {
+  padding: 5px 10px;
+  background: transparent;
+  border: 3px solid orange;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: green;
+  font-weight: bolder;
+}
+
+form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+form > * {
+  margin-right: 10px;
+}
+
+.tabelka {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  width: 122px;
+}
+
+.box {
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+}
+
+.border {
+	border: 3px solid green;
+}
+
+.text--big {
+	font-size: 50px;
+	font-weight: bolder;
+}

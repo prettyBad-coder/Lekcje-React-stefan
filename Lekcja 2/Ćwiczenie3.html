@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+
+		.food-list {
+			display: flex;
+			align-items: center;
+			border: 5px solid green;
+			max-width: max-content;
+		}
+
+		.food {
+			height: 200px;
+			width: 200px;
+			border: 5px solid blue;
+			margin: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.text {
+			font-size: 1.5625rem;
+			color: red;
+			font-weight: bold;
+		}
+
+		button {
+			height: 50px;
+			background: transparent;
+			border: 2px solid red;
+			margin: 10px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class Food extends React.Component {
+
+			render() {
+				return (
+					<div className="food">
+						{this.props.food}
+					</div>
+				)
+			}
+		}
+
+		class FoodList extends React.Component {
+			constructor() {
+				super();
+				this.state = {
+					foodList: ['masło', 'mleko', 'chleb', 'dżem'],
+				}
+			}
+
+			randomFood = () => {
+				let max = this.state.foodList.length - 1;
+				let num = Math.floor(Math.random() * (max - 0 + 1) + 0);
+				let food = this.state.foodList[num];
+				console.log(food);
+				this.setState({
+					food: food,
+				})				
+			}
+
+			render() {
+				return (
+					<div className="food-list">
+						<button onClick={this.randomFood}>
+							Generate random food for every child
+						</button>
+						<Food food={ this.state.food } />
+						<Food food={ this.state.food } />
+						<Food food={ this.state.food } />
+					</div>
+				)
+			}
+		}
+
+
+
+		ReactDOM.render(
+			<FoodList />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

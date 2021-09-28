@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+
+		.container {
+			display: flex;
+			width: max-content;
+			border: 5px solid red;
+		}
+
+		.table {
+			display: flex;
+			border: 5px solid orange;
+			margin: 5px;
+		}
+		
+		.column {
+			display: flex;
+			flex-direction: column;
+			margin: 5px;
+			border: 5px solid purple;
+		}
+
+		.square {
+			height: 100px;
+			width: 100px;
+			background-color: green;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.375rem;
+			margin: 5px;
+			text-align: center;
+			color: white;
+			font-weight: bold;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	
+	<script type="text/babel">
+
+		class Square extends React.Component {
+			render() {
+				return (
+					<div className="square">
+						React Comp
+					</div>
+				)
+			}
+		}
+
+		class Column extends React.Component {
+			render() {
+				return (
+					<div className="column">
+						<Square/>
+						<Square/>
+						<Square/>
+					</div>
+				)
+			}
+		}
+
+		class Table extends React.Component {
+			render() {
+				return (
+					<div className="table">
+						<Column/>
+						<Column/>
+						<Column/>
+					</div>
+				)
+			}
+		}
+
+
+		class Container extends React.Component {
+			render() {
+				return (
+					<div className="container">
+						<Table/>
+						<Table/>
+						<Table/>
+					</div>
+				)
+			}
+		}
+
+
+		ReactDOM.render(
+			<Container/>,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+</html>

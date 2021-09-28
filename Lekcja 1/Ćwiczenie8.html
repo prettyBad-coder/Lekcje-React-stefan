@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		div {
+			display: flex;
+		}
+		
+		h1 {
+			color: red;
+			border: 5px solid red;
+			padding: 5px;
+			width: max-content;
+			margin: 50px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	
+	<script type="text/babel">
+	
+		class Start extends React.Component {
+			render() {
+				let city = 'Skawina'
+				let info = 'bardzo fajne miasto'
+				return (
+					<h1> {city} - {info} </h1>
+				);
+			}
+		}
+
+		class Root extends React.Component {
+			render() {
+				return (
+					<>
+						<Start/>
+						<Start/>
+						<Start/>
+					</>
+				)	
+			}
+		}
+
+		ReactDOM.render(
+			<Root />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+</html>

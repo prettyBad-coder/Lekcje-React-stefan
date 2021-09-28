@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			border: 5px solid green;
+			width: max-content;
+		}
+
+		.item {
+			border: 5px solid blue;
+			padding: 10px;
+			margin: 5px;
+			font-size: 2rem;
+			display: flex;
+			color: blue;
+		}
+		
+		.button {
+			background-color: lightgray;
+			border: 5px solid red;
+			color: red;
+			margin-left: 20px;
+			font-size: 1.5rem;
+			padding: 5px;
+		}
+
+		.button:hover{
+			cursor: pointer;
+		}
+
+
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	
+	<script type="text/babel">
+
+		class ListItem extends React.Component {
+			render() {
+				let arr = ['kup', 'usun'];
+				return (
+					<div className="item">
+						{this.props.quantity} x {this.props.name} 
+						<div className="button">
+							{arr[0]}
+						</div>
+						<div className="button">
+							{arr[1]}
+						</div>
+					</div>
+				)
+			}
+		}
+
+		class List extends React.Component {
+			render() {
+				return (
+					<div className="container">
+						<ListItem quantity="1" name="masło"/>
+						<ListItem quantity="2" name="mleko"/>
+						<ListItem quantity="3" name="chleb"/>
+					</div>
+				);
+			}
+		}
+
+
+		ReactDOM.render(
+			<List/>,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+</html>

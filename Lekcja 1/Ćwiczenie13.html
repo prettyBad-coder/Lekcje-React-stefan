@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		
+		.container {
+			display: flex;
+		}
+
+		.box {
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 200px;
+			height: 300px;
+			border: 5px solid blue;
+			justify-content: space-around;
+		}
+
+		span {
+			text-align: center;
+			font-size: 2rem;
+			color: blue;
+		}
+
+		img {
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	
+	<script type="text/babel">
+
+		var imagesData = [
+			{id:1, name:"hamlet" },
+			{id:2, name:"krzyzacy" },
+			{id:3, name:"lalka" }
+		]
+
+		class Image extends React.Component {
+			
+			makeImageUrl(url) {
+				return `/${url}.jpg`;
+			}
+
+			makeImageName(name) {
+				return `${name}`;
+			}
+
+			render() {
+				return (
+					<div className="box">
+						<span>
+							{this.makeImageName(this.props.name)}
+						</span>
+						<img src={this.makeImageUrl(this.props.name)} alt={this.makeImageName(this.props.name)}/>
+					</div>
+				)
+			}
+		}
+
+		class ImagesList extends React.Component {
+			render() {
+				let imagesArr = this.props.imagesData.map((element, index) => {
+					return (
+						<Image key={index} id={element.id} name={element.name} />
+					)
+				})
+				return (
+					<div class="container">
+						{imagesArr}
+					</div>
+
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<ImagesList imagesData={imagesData} />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Lekcja 3 </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		body {
+			background: #303030;
+		}
+
+		* {
+			margin-top: 10px;
+		}
+
+		.box {
+			height: 200px;
+			width: 200px;
+			border: 5px solid blue;
+			padding: 10px;
+			padding-top: 0;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.text {
+			color: blue;
+		}
+
+		.red {
+			color: red;
+		}
+
+		.green {
+			color: green;
+		}	
+		
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class FormBox extends React.Component {
+			constructor (props) {
+				super(props);
+				this.state = {
+					textData: '',
+					status: 'Niewysłane',
+				}
+			}
+
+			handleChange = (event) => {
+				this.setState({
+					textData: event.target.value,
+					status: 'Niewysłane',
+				})
+			}
+
+			handleSubmit = (event) => {
+				if( this.state.textData )
+				this.setState({ textData: '', status: 'Wysłane'})
+				event.preventDefault();
+			}
+
+			render () {
+				return (
+					<div className="box">
+						<div className="text">
+							Formularz
+						</div>
+						<form onSubmit={ this.handleSubmit }>
+							<input type="text" value={ this.state.textData } onChange={ this.handleChange }/>
+							<input type="submit" value="send"/>
+						</form>
+						<div className="text">
+							<span className="red">
+								Status: { this.state.status }
+							</span> 
+						</div>
+						<div className="text">
+							<span className="green">
+								Data: { this.state.textData }
+							</span> 
+						</div>
+					</div>
+				)
+			}
+		}
+
+
+
+
+		ReactDOM.render(
+			<FormBox />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

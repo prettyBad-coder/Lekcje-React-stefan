@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	
+	<style>
+
+		div {
+			border: 2px solid green;
+			padding: 10px;
+		}
+
+		.klasa {
+			display: block;
+			padding: 5px;
+			font-size: 1.125rem;
+		}
+
+		.klasa1 {
+			color: red;
+			border: 2px solid red;
+		}
+
+		.klasa2 {
+			color: blue;
+			border: 2px solid blue;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	<script>
+		
+
+		let h1 = React.createElement('h1', { className: 'klasa klasa1' }, "React h1 component");
+		let h2 = React.createElement('h2', { className: 'klasa klasa2' }, "React h2 component");
+		
+		let tab = [h1, h2, h1, h2, h1, h2];
+
+		ReactDOM.render(
+			tab,
+			document.querySelector('.react-app')
+		)
+	</script>
+</body>
+</html>

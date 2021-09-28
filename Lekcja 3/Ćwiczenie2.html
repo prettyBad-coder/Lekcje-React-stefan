@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Lekcja 3 </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		body {
+			background: #303030;
+		}
+
+		* {
+			margin-top: 10px;
+		}
+
+		.box {
+			height: 100px;
+			width: 250px;
+			border: 5px solid red;
+			padding: 10px;
+			padding-top: 0;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.formBox {
+			padding: 25px;
+			padding-top: 10px;
+			border: 5px solid orange;
+			width: max-content;
+		}
+
+		.text {
+			color: blue;
+			font-size: 1.1rem;
+			font-weight: bolder;
+		}
+
+		.red {
+			color: red;
+		}
+
+		.green {
+			color: green;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class MySelect extends React.Component {
+			constructor (props) {
+				super(props);
+				this.state = {
+					text: '',
+				}
+			}
+			
+			onSelectChange = (event) => {
+				this.setState({text: event.target.value})
+				this.props.handleSelect(event.target.value);
+			}
+			
+			render () {
+				let townsList = this.props.list.map((item, index) => {
+					return (
+						<option key={index}>
+							{ item.name }
+						</option>
+					)
+				})
+
+				return(
+					<div className="box">
+						<select onChange={ this.onSelectChange }>
+							{ townsList }
+						</select>
+						<div className="text">
+							Wybrane z select: { this.state.text }
+						</div>
+					</div>
+				)
+			}
+		}
+
+		class MyForm extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					towns: [
+						{ id: 0, name: "Kraków" },
+						{ id: 1, name: "Warszawa" },
+						{ id: 2, name: "Gdańsk" },
+						{ id: 3, name: "Toruń" }
+					],
+					books: [
+						{ id: 0, name: "hamlet" },
+						{ id: 1, name: "krzyzacy" },
+						{ id: 2, name: "lalka" }
+					],
+					data: [],
+				}
+			}
+
+			onHandleSelect = (item) => {
+				let data = this.state.data
+				data.push(item)
+				this.setState({
+					data: data,
+				}) 
+			}
+
+			render () {
+				return(
+					<div className="formBox">
+						<form>
+							<MySelect list={this.state.books} handleSelect={this.onHandleSelect} />
+							<MySelect list={this.state.towns} handleSelect={this.onHandleSelect} />
+						</form>
+						<div className="text">
+							Wysłane: { JSON.stringify(this.state.data) }
+						</div>
+					</div>
+				)
+			}
+		}
+
+
+		ReactDOM.render(
+			<MyForm />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

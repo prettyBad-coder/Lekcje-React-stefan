@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+
+		body {
+			background-color: #303030;
+			color: lightgray;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			max-width: 90vw;
+			margin: 0 auto;
+		}
+
+		.square > * {
+			margin-top: 15px;
+		}
+
+		.box-big {
+			display: flex;
+			max-width: 100%;
+			flex-wrap: wrap;
+		}
+
+		.border-green {
+			border: 5px solid green;
+		}
+
+		.square {
+			height: 200px;
+			width: 200px;
+			border: 5px solid blue;
+			margin: 10px;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+			justify-content: center;
+		}
+
+		.text {
+			font-size: 1.5625rem;
+			color: white;
+			font-weight: bold;
+		}
+
+		button {
+			height: 50px;
+			background: transparent;
+			border: 2px solid white;
+			border-radius: 10px;
+			font-size: 1.25rem;
+			font-weight: bolder;
+			color: white;
+			background: orange;
+			margin: 10px;
+			padding: 5px 30px;
+		}
+
+		button:hover {
+			cursor: pointer;
+		}
+
+		.like {
+			border: 2px solid blue;
+			font-size: 20px;
+			font-weight: bolder;
+			padding: 3px;
+		}
+
+		img {
+			width: 90%;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class Box extends React.Component {
+			constructor () {
+				super();
+				this.state = {
+					height: 200,
+					backgroundColor: '#303030',
+				}
+			}
+
+			random = (max, min) =>  Math.floor(Math.random() * (max - min + 1) + min);
+
+			randomValues = () => {
+				let height = this.random(200, 700);
+				let backgroundColor = `rgb(${this.random(0, 255)}, ${this.random(0, 255)}, ${this.random(0, 255)})`;
+
+				this.setState({
+					height: height,
+					backgroundColor: backgroundColor,
+				})
+			}
+
+			render() {
+				return (
+					<div className="square" style={
+						{
+							height: `${this.state.height}px`,
+							backgroundColor: `${this.state.backgroundColor}`,
+						}
+					}>
+						<div className="text">
+							height = { this.state.height }
+						</div>
+						<div className="text">
+							color = { this.state.backgroundColor }
+						</div>
+						<button onClick={ () => this.randomValues(200, 700) }>
+							Random
+						</button>
+					</div>
+				)
+			}
+		}
+
+		class Container extends React.Component {
+			render () {
+				return (
+					<div className="container">
+						<Box/>
+						<Box/>
+						<Box/>
+					</div>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<Container />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

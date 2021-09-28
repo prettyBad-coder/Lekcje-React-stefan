@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		div {
+			display: flex;	
+		}
+
+		ul {
+			border: 5px solid orange;
+			padding: 0;
+			margin: 10px;
+		}
+
+		li {
+			font-size: 1.5rem;
+			margin: 10px;
+			list-style: none;
+			box-sizing: content-box;
+			padding: 5px;
+		}
+
+		li:nth-child(1) {
+			border: 5px solid blue;
+			color: blue;
+		}
+
+		li:nth-child(2) {
+			border: 5px solid red;
+			color: red;
+		}
+
+		li:nth-child(3) {
+			border: 5px solid green;
+			color: green;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="react-app">
+
+	</div>
+	
+	<script type="text/babel">
+
+		let data = [{
+			id: 1,
+			quantity: 1,
+			name: 'masło',
+			action: 'kupic',
+		}, {
+			id: 2,
+			quantity: 10,
+			name: 'mleko',
+			action: 'wypić',
+		}, {
+			id: 3,
+			quantity: 22,
+			name: 'nabiał',
+			action: 'sprzedać',
+		}]
+
+		class Task extends React.Component {
+			render() {
+				return (
+					<ul>
+						<li> id: {this.props.id} </li>
+						<li> zadanie: {this.props.action} -&gt; {this.props.name} </li>
+						<li> ile: {this.props.quantity} </li>
+					</ul>
+				)
+			}
+		}
+
+		class TaskList extends React.Component {
+			render() {
+				let lista = this.props.tasksProp.map((mapItem, index) => {
+					return (
+						<Task key={index} id={mapItem.id} quantity={mapItem.quantity} name={mapItem.name} action={mapItem.action} />
+					)
+				})
+				return (
+					<div>
+						{lista}
+					</div>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<TaskList tasksProp={data}/>,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+</html>

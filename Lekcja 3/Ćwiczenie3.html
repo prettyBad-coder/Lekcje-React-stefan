@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Lekcja 3 </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+		body {
+			background: #303030;
+			overflow: hidden;
+		}
+
+		* {
+			margin-top: 10px;
+		}
+
+		.box {
+			width: 95%;
+			height: auto;
+			padding: 5px;
+			border: 5px solid green;
+			padding: 10px;
+			padding-top: 0;
+			box-sizing: border-box;
+		}
+
+		.formBox {
+			padding: 25px;
+			padding-top: 10px;
+			border: 5px solid orange;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			max-width: 300px;
+			margin: 25% auto;
+			transform: translateY(-25%);
+		}
+
+		.text {
+			color: blue;
+			font-size: 1.1rem;
+			font-weight: bolder;
+		}
+
+		.red {
+			font-weight: bolder;
+			color: red;
+		}
+
+		.green {
+			font-weight: bolder;
+			color: green;
+		}
+
+		.green-bg {
+			background: rgb(21, 206, 21);
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class MyCheckbox extends React.Component {
+			constructor (props) {
+				super(props);
+
+				this.state = {
+					checked: this.props.checked,
+					class: 'box',
+				}
+			} 
+
+			onChangeCheckbox = (event) => {
+				let boxClass = '';
+				
+				if (!this.state.checked) {
+					boxClass = 'box green-bg';
+					this.props.suma(event.target.value, '+');
+				} else {
+					boxClass = 'box';
+					this.props.suma(event.target.value, '-');
+				}
+
+				this.setState({
+					class: boxClass,
+					checked: !this.state.checked,
+				})
+			}	
+
+			render () {
+
+				return (
+
+					<div className={this.state.class}>
+						<input
+							type="checkbox"
+							value={ this.props.value }
+							checked={ this.state.checked }
+							onChange={ this.onChangeCheckbox }
+						/>
+						<span className="red">
+							${ this.props.value }
+						</span>
+					</div>
+				)
+			}
+		}
+
+		class MyForm extends React.Component {
+			constructor (props) {
+				super(props);
+
+				this.state = {
+					checkboxArray: [
+						{ checked: false, value: 1 },
+						{ checked: false, value: 2 },
+						{ checked: false, value: 3 },
+						{ checked: false, value: 10 },
+						{ checked: false, value: 20 },
+					],
+					suma: 0,
+				}
+			}
+
+			suma = (number, char) => {
+				let num = this.state.suma;
+				if (char == '+') num += parseInt(number);
+				else num -= parseInt(number);
+				this.setState({
+					suma: num,
+				})
+			}
+
+			render () {
+				let checkboxComponentArray = this.state.checkboxArray.map((element, index) => {
+					return (
+						<MyCheckbox suma={this.suma} value={ element.value } checked={ element.checked } key={ index } />
+					)
+				})
+
+				return (
+					<form className="formBox">
+						{ checkboxComponentArray }
+						<div className="text red">
+							suma: { this.state.suma }
+						</div>
+					</form>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<MyForm />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Title </title>
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<style>
+
+		body {
+			background-color: #303030;
+			color: lightgray;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			max-width: 90vw;
+			margin: 0 auto;
+		}
+
+		.box-big {
+			display: flex;
+			max-width: 100%;
+			flex-wrap: wrap;
+		}
+
+		.border-green {
+			border: 5px solid green;
+		}
+
+		.square {
+			height: 200px;
+			width: 200px;
+			border: 5px solid blue;
+			margin: 10px;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.text {
+			font-size: 1.5625rem;
+			color: red;
+			font-weight: bold;
+		}
+
+		button {
+			height: 50px;
+			background: transparent;
+			border: 2px solid red;
+			color: lightgray;
+			margin: 10px;
+		}
+
+		button:hover {
+			cursor: pointer;
+		}
+
+		.like {
+			border: 2px solid blue;
+			font-size: 20px;
+			font-weight: bolder;
+			padding: 3px;
+		}
+
+		img {
+			width: 90%;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="react-app">
+
+	</div>
+
+	<script type="text/babel">
+
+		class ImageBox extends React.Component {
+			
+			getUrl = (name) => `./${name}.jpg`;
+			
+			render() {
+				return (
+					<div className="square">
+						{this.props.name}	
+						<br/>
+						{this.props.index}
+						<img src={this.getUrl(this.props.name)}/> 
+					</div>
+				)
+			}
+		}
+
+		class Container extends React.Component {
+			constructor() {
+				super();
+				this.state = {
+					boxesArray: ['trufle' , 'burger'],
+				}
+			}
+
+			addBox = (argument) => {
+				let arr = this.state.boxesArray;
+				arr.push(argument);
+				
+				this.setState({
+					boxesArray: arr,
+				})
+
+				console.log(this.state.boxesArray)
+			}	
+
+			render() {
+				let finalArray = [];
+				this.state.boxesArray.forEach((element, index) => {
+					finalArray.push(<ImageBox name={element} index={index} />);
+				})
+
+
+
+
+				return (	
+					<div className="container">
+						<div>
+							<button onClick={() => this.addBox('trufle')}>
+								Dodaj tanie
+							</button>
+							<button onClick={() => this.addBox('burger')}>
+								Dodaj drogie
+							</button>
+						</div>
+						<div className="box-big">
+							{finalArray}
+						</div>
+					</div>
+				)
+			}
+		}
+
+
+
+		ReactDOM.render(
+			<Container />,
+			document.querySelector('.react-app')
+		);
+	</script>
+
+</body>
+
+</html>
