@@ -26,6 +26,18 @@ class Boards extends Component {
 		})
 	}
 
+	mySavedDelete = (id) => {
+		// console.log(id);
+		let arr = this.state.savedArr;
+		let filteredArr = arr.filter((element ,index) => {
+			if(index != id) {
+				return element
+			}
+		});
+
+		this.setState({savedArr: filteredArr});
+	}
+
 	myRadio = (event) => {
 		this.setState({
 			selectedColor: event.target.value,
@@ -69,9 +81,9 @@ class Boards extends Component {
 					<div className="text--big">
 						SAVED
 					</div>
-					{this.state.savedArr.map(element => {
+					{this.state.savedArr.map((element, index) => {
 						return (
-							<SavedBoard arr={element.data} color={element.color} />
+							<SavedBoard delete={ this.mySavedDelete } arr={element.data} color={element.color} index={ index } key={ index }/>
 						)
 					})}
 				</div>

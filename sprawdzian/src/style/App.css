@@ -105,3 +105,21 @@ form > * {
 	font-size: 50px;
 	font-weight: bolder;
 }
+
+.column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.delete-button {
+	padding: 5px 15px;
+	background-color: transparent;
+	border: 3px solid red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.125rem;
+	border-radius: 5px;
+	margin-top: 15px;
+}
