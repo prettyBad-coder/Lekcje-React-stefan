@@ -113,7 +113,7 @@ class SimpleBoard extends Component {
 	render() {
 		let table = [];
 		this.state.coordsTab[this.props.pattern].forEach((element) => {
-			table.push(<div onClick={ this.boxClick } id={ element.id } className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.tableColor}}>{ element.id }</div>);
+			table.push(<div onClick={ this.boxClick } id={ element.id } className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.tableColor}}></div>);
 		})
 		return (
 			<div className="tabelka">

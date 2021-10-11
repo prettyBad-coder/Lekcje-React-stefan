@@ -9,9 +9,7 @@ class SavedBoard extends Component {
 			<div className="tabelka">
 				{this.props.arr.map((element, index) => {
 					return(
-						<div className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.color}}>
-							{ index }
-						</div>
+						<div className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.color}}></div>
 					)
 				})}
 			</div>
