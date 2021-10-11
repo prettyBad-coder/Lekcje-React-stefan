@@ -15,14 +15,14 @@ class Boards extends Component {
 	
 	mySave = (arr, color) => {
 		console.log(arr);
-		const dupa = [...this.state.savedArr];
+		const newArr = [...this.state.savedArr];
 		const current = {
 			color: color,
 			data: arr
 		}
-		dupa.push(current)
+		newArr.push(current)
 		this.setState({
-			savedArr: dupa
+			savedArr: newArr
 		})
 	}
 
