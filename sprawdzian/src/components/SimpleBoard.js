@@ -98,6 +98,11 @@ class SimpleBoard extends Component {
 		this.props.mySave(this.state.coordsTab[this.props.pattern], this.props.tableColor);
 	}
 
+	componentDidUpdate(prevProps) {
+		if(this.props.tableColor != prevProps.tableColor) 
+			this.props.mySave(this.state.coordsTab[this.props.pattern], this.props.tableColor);
+	}
+
 	boxClick = (data) => {
 		let tab = this.state.coordsTab;
 		tab[this.props.pattern][data.target.id].selected = !tab[this.props.pattern][data.target.id].selected;

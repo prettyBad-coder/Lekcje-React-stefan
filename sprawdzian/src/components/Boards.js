@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import data from '../data.json';
 import Board from './Board';
+import SavedBoard from './SavedBoard';
 
 class Boards extends Component {
 	constructor(props) {
@@ -70,9 +71,7 @@ class Boards extends Component {
 					</div>
 					{this.state.savedArr.map(element => {
 						return (
-							<div className="c">
-								{JSON.stringify(element.data)}
-							</div>
+							<SavedBoard arr={element.data} color={element.color} />
 						)
 					})}
 				</div>
