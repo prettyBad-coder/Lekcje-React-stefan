@@ -14,17 +14,15 @@ class SavedBoard extends Component {
 	
 	render() {
 		return (
-			<div className="column">
-				<div className="tabelka">
-					{this.props.arr.map((element, index) => {
-						return(
-							<div className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.color}}></div>
-						)
-					})}
-				</div>
+			<div className="tabelka tabelka-saved">
 				<div className="delete-button" onClick={ this.delete }>
 					Delete
 				</div>
+				{this.props.arr.map((element, index) => {
+					return(
+						<div className="box box-saved" style={{backgroundColor: element.selected ? 'transparent' : this.props.color}}></div>
+					)
+				})}
 			</div>
 		);
 	}

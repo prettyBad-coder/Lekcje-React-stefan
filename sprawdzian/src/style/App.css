@@ -89,6 +89,7 @@ form > * {
   flex-wrap: wrap;
   height: 200px;
   width: 122px;
+  position: relative;
 }
 
 .box {
@@ -113,8 +114,9 @@ form > * {
 }
 
 .delete-button {
+	position: absolute;
 	padding: 5px 15px;
-	background-color: transparent;
+	background-color: #303030;
 	border: 3px solid red;
 	display: flex;
 	justify-content: center;
@@ -122,4 +124,30 @@ form > * {
 	font-size: 1.125rem;
 	border-radius: 5px;
 	margin-top: 15px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0%;
+	transition: .3s;
+	z-index: 10000;
+}
+
+.delete-button:hover {
+	cursor: pointer;
+}
+
+.tabelka-saved {
+	transition: .3s;
+}
+
+.box-saved {
+	transition: .3s;
+}
+
+.tabelka-saved:not(.delete-button):hover .box-saved{
+	opacity: 20%;
+}
+
+.tabelka-saved:hover .delete-button {
+	opacity: 100%;
 }
