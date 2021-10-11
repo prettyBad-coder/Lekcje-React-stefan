@@ -13,16 +13,16 @@ class Boards extends Component {
 	}
 	
 	mySave = (arr, color) => {
-		let savedArr = this.state.savedArr;
-		savedArr.push(
-			<div className="tabelka">
-				siema eniu
-			</div>
-		)
+		console.log(arr);
+		const dupa = [...this.state.savedArr];
+		const current = {
+			color: color,
+			data: arr
+		}
+		dupa.push(current)
 		this.setState({
-			savedArr: savedArr,
+			savedArr: dupa
 		})
-		console.log(this.state.savedArr)
 	}
 
 	myRadio = (event) => {
@@ -68,7 +68,13 @@ class Boards extends Component {
 					<div className="text--big">
 						SAVED
 					</div>
-					{ this.state.savedArr }
+					{this.state.savedArr.map(element => {
+						return (
+							<div className="c">
+								{JSON.stringify(element.data)}
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		);

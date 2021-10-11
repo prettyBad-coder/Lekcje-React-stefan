@@ -94,6 +94,10 @@ class SimpleBoard extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.props.mySave(this.state.coordsTab[this.props.pattern], this.props.tableColor);
+	}
+
 	boxClick = (data) => {
 		let tab = this.state.coordsTab;
 		tab[this.props.pattern][data.target.id].selected = !tab[this.props.pattern][data.target.id].selected;
@@ -103,7 +107,6 @@ class SimpleBoard extends Component {
 
 	render() {
 		let table = [];
-
 		this.state.coordsTab[this.props.pattern].forEach((element) => {
 			table.push(<div onClick={ this.boxClick } id={ element.id } className="box" style={{backgroundColor: element.selected ? 'transparent' : this.props.tableColor}}>{ element.id }</div>);
 		})
