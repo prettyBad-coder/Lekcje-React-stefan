@@ -1,0 +1,21 @@
+.box {
+	margin: 10px;
+	background-color: transparent;
+	border: 5px solid orange;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: max-content;
+	padding: 100px;
+	
+}
+
+button {
+	padding: 5px 10px;
+	background: transparent;
+	border: 2px solid red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

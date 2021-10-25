@@ -1,0 +1,15 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #303030;
+	color: white;
+}
+
+
+.App {
+	width: 90vw;
+	margin: 5vh auto 0 auto;
+	display: flex;	
+	border: 5px solid blue;
+	background: transparent;
+}
