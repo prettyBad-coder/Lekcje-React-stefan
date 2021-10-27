@@ -5,11 +5,20 @@ class SavedBoard extends Component {
 		super(props);
 		this.state = {
 			id: this.props.index,
+			color: '',
+			arr: [],
 		}
 	}
 
 	delete = () => {
 		this.props.delete(this.state.id);
+	}
+
+	componentDidMount = () => {
+		this.setState({ 
+			color: this.props.color,
+			arr: [...this.props.arr]
+		})
 	}
 	
 	render() {
@@ -18,11 +27,13 @@ class SavedBoard extends Component {
 				<div className="delete-button" onClick={ this.delete }>
 					Delete
 				</div>
-				{this.props.arr.map((element, index) => {
-					return(
-						<div className="box box-saved" style={{backgroundColor: element.selected ? 'transparent' : this.props.color}}></div>
-					)
-				})}
+				{
+					this.state.arr.map((element, index) => {
+						return(
+							<div className="box box-saved" style={{backgroundColor: element.selected ? 'transparent' : this.state.color}}></div>
+						)
+					})
+				}
 			</div>
 		);
 	}
